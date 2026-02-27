@@ -40,12 +40,15 @@ body{background:#121214;color:#fff;font-family:system-ui,sans-serif;padding:15px
 </div>
 
 <script>
-// 这里已经帮你写对了，不会404
-const ROOT = "https://jlandl.github.io/jianpanpf/";
+// 这里用 GitHub Pages 自身路径，不会 404
+const ROOT = window.location.origin + window.location.pathname;
 
-// 10 个空白模板 + 你现有的皮肤已填好
 const skins = [
-  { name: "Samsung扣字电脑音", bds: "Samsung扣字电脑音.bds", bdi: "Samsung扣字电脑音.bdi" },
+  {
+    name: "Samsung扣字电脑音",
+    bds: "Samsung扣字电脑音.bds",
+    bdi: "Samsung扣字电脑音.bdi"
+  },
   { name: "皮肤2",  bds: "", bdi: "" },
   { name: "皮肤3",  bds: "", bdi: "" },
   { name: "皮肤4",  bds: "", bdi: "" },
@@ -85,8 +88,8 @@ function render() {
           ${tags.map(t => `<span class="tag ${t}">${t === 'android' ? '安卓 bds' : '苹果 bdi'}</span>`).join('')}
         </div>
         <div class="btns">
-          ${item.bds ? `<a href="${ROOT}${item.bds}" class="btn" target="_blank" download>${item.bds}</a>` : ''}
-          ${item.bdi ? `<a href="${ROOT}${item.bdi}" class="btn bdi" target="_blank" download>${item.bdi}</a>` : ''}
+          ${item.bds ? `<a href="${ROOT}${item.bds}" class="btn" target="_blank" download="${item.bds}">bds 安卓</a>` : ''}
+          ${item.bdi ? `<a href="${ROOT}${item.bdi}" class="btn bdi" target="_blank" download="${item.bdi}">bdi 苹果</a>` : ''}
         </div>
       </div>
     `
