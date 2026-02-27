@@ -1,113 +1,219 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>键盘皮肤大全 bds/bdi</title>
+<title>键盘皮肤网</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#121214;color:#fff;font-family:system-ui,sans-serif;padding:15px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0c0c0c;color:#fff;font-family:system-ui,sans-serif;padding:20px}
 .container{max-width:1000px;margin:0 auto}
-.title{text-align:center;margin:20px 0}
-.search{width:100%;padding:12px 15px;border-radius:10px;border:none;background:#1e1e1e;color:#fff;margin-bottom:15px}
-.filter{display:flex;gap:10px;margin-bottom:20px}
-.filter button{padding:10px 16px;border:none;border-radius:20px;background:#1e1e1e;cursor:pointer}
-.filter button.active{background:#4e79f7;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
-.keybg{width:100%;height:180px;background:linear-gradient(135deg,#4e79f7,#7e56ff);border-radius:12px 12px 0 0}
-.card{background:#1e1e1e;border-radius:12px;overflow:hidden}
-.info{padding:15px}
-.name{font-weight:600;margin-bottom:10px}
-.tags{display:flex;gap:6px;margin-bottom:10px}
-.tag{padding:4px 8px;border-radius:12px;font-size:12px}
-.tag.android{background:#2e7d32;color:#fff}
-.tag.ios{background:#ff9500;color:#fff}
-.btns{display:flex;gap:8px;margin-top:8px}
-.btn{flex:1;padding:10px 0;border-radius:8px;background:#4e79f7;color:#fff;text-align:center;text-decoration:none}
-.btn.bdi{background:#ff9500}
+header{text-align:center;margin-bottom:24px}
+h1{font-size:26px;margin-bottom:8px}
+.sub{color:#aaa;font-size:14px}
+
+.search-box{
+  margin:20px 0;
+  text-align:center;
+}
+.search-input{
+  width:100%;
+  max-width:500px;
+  padding:12px 16px;
+  border-radius:12px;
+  border:none;
+  background:#1a1a24;
+  color:#fff;
+  font-size:15px;
+  outline:none;
+}
+
+.tabs{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+}
+.tab{
+  padding:8px 16px;
+  border-radius:10px;
+  background:#1a1a24;
+  cursor:pointer;
+  transition:0.2s;
+}
+.tab.active{
+  background:#3a7dff;
+  color:#fff;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.card{
+  background:#141419;
+  border-radius:16px;
+  overflow:hidden;
+  transition:transform 0.2s;
+}
+.card:hover{transform:translateY(-4px)}
+.cover{
+  height:160px;
+  background:linear-gradient(135deg,#3a7dff,#7a3aec);
+}
+.body{padding:20px}
+.name{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+.tags{
+  display:flex;
+  gap:8px;
+  margin-bottom:16px;
+}
+.tag{
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+}
+.android{background:#10b981;color:#fff}
+.ios{background:#f97316;color:#fff}
+.btns{
+  display:flex;
+  gap:10px;
+}
+.btn{
+  flex:1;
+  padding:10px 0;
+  border-radius:10px;
+  text-align:center;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+}
+.btn-bds{background:#1d4ed8;color:#fff}
+.btn-bdi{background:#ea580c;color:#fff}
 </style>
 </head>
 <body>
+
 <div class="container">
-  <h2 class="title">键盘皮肤大全 bds/bdi</h2>
-  <input type="text" class="search" id="search" placeholder="搜索皮肤">
-  <div class="filter">
-    <button class="active" data-type="all">全部</button>
-    <button data-type="bds">安卓 bds</button>
-    <button data-type="bdi">苹果 bdi</button>
+  <header>
+    <h1>键盘皮肤聚合网</h1>
+    <p class="sub">bds / bdi 下载</p>
+  </header>
+
+  <div class="search-box">
+    <input 
+      type="text" 
+      class="search-input" 
+      id="search" 
+      placeholder="搜索皮肤名称..."
+    >
   </div>
-  <div class="grid" id="grid"></div>
+
+  <div class="tabs">
+    <div class="tab active" data-type="all">全部</div>
+    <div class="tab" data-type="bds">安卓bds</div>
+    <div class="tab" data-type="bdi">iOSbdi</div>
+  </div>
+
+  <div class="grid" id="box"></div>
 </div>
 
 <script>
-// 这里用 GitHub Pages 自身路径，不会 404
-const ROOT = window.location.origin + window.location.pathname;
-
 const skins = [
   {
     name: "Samsung扣字电脑音",
-    bds: "Samsung扣字电脑音.bds",
-    bdi: "Samsung扣字电脑音.bdi"
+    bds: "https://115-25-208-37.pd1.cjjd19.com/1135-user-other-free-download-cdn.123295.com/123-874/c2bac280/1820107854-0/c2bac2802349f6048b45e7793d6a9f6a/c-m114?v=5&t=1772817892&r=CK7KU9&bzc=1&bzs=313832303130373835343a323a313a313836393231&ur=abgabgaulgav&urn=0&s=1772817892e2d589db0eb8b3282ea755560810b49a&bzp=0&bi=397100380&filename=Samsung%E6%89%A3%E5%AD%97%E7%94%B5%E8%84%91%E9%9F%B3.bds&x-mf-biz-cid=35832f47-0130-41b4-bc78-8c601ae3521f-5baabb&auto_redirect=1&ndcp=1&cache_type=1&xmfcid=1792ac89-3e55-43d7-a223-df97fa15720e68a09c88be1",
+    bdi: "https://115-25-208-38.pd1.cjjd19.com/1135-user-other-free-download-cdn.123295.com/123-382/5f399385/1820107854-0/5f399385ed5d25ff0f7fc88bd435dd7e/c-m114?v=5&t=1772817584&r=ANF575&bzc=1&bzs=313832303130373835343a323a313a313832333333&ur=abgabgaulgav&urn=0&s=1772817584f8151e58eed2b05344a763d3cdc69e53&bzp=0&bi=397100380&filename=Samsung%E6%89%A3%E5%AD%97%E7%94%B5%E8%84%91%E9%9F%B3.bdi&x-mf-biz-cid=3504d815-ac5b-48b8-b021-967fb78a8677-08139d&auto_redirect=1&ndcp=1&cache_type=1&xmfcid=15b7d0d1-6098-4f70-b3ce-373ee9a534b466a09c88be1"
   },
-  { name: "皮肤2",  bds: "", bdi: "" },
-  { name: "皮肤3",  bds: "", bdi: "" },
-  { name: "皮肤4",  bds: "", bdi: "" },
-  { name: "皮肤5",  bds: "", bdi: "" },
-  { name: "皮肤6",  bds: "", bdi: "" },
-  { name: "皮肤7",  bds: "", bdi: "" },
-  { name: "皮肤8",  bds: "", bdi: "" },
-  { name: "皮肤9",  bds: "", bdi: "" },
+  { name: "皮肤02", bds: "", bdi: "" },
+  { name: "皮肤03", bds: "", bdi: "" },
+  { name: "皮肤04", bds: "", bdi: "" },
+  { name: "皮肤05", bds: "", bdi: "" },
+  { name: "皮肤06", bds: "", bdi: "" },
+  { name: "皮肤07", bds: "", bdi: "" },
+  { name: "皮肤08", bds: "", bdi: "" },
+  { name: "皮肤09", bds: "", bdi: "" },
   { name: "皮肤10", bds: "", bdi: "" },
+  { name: "皮肤11", bds: "", bdi: "" },
+  { name: "皮肤12", bds: "", bdi: "" },
+  { name: "皮肤13", bds: "", bdi: "" },
+  { name: "皮肤14", bds: "", bdi: "" },
+  { name: "皮肤15", bds: "", bdi: "" },
+  { name: "皮肤16", bds: "", bdi: "" },
+  { name: "皮肤17", bds: "", bdi: "" },
+  { name: "皮肤18", bds: "", bdi: "" },
+  { name: "皮肤19", bds: "", bdi: "" },
+  { name: "皮肤20", bds: "", bdi: "" },
+  { name: "皮肤21", bds: "", bdi: "" },
+  { name: "皮肤22", bds: "", bdi: "" },
+  { name: "皮肤23", bds: "", bdi: "" },
+  { name: "皮肤24", bds: "", bdi: "" },
+  { name: "皮肤25", bds: "", bdi: "" },
+  { name: "皮肤26", bds: "", bdi: "" },
+  { name: "皮肤27", bds: "", bdi: "" },
+  { name: "皮肤28", bds: "", bdi: "" },
+  { name: "皮肤29", bds: "", bdi: "" },
+  { name: "皮肤30", bds: "", bdi: "" },
 ];
 
-const grid = document.getElementById('grid')
-const search = document.getElementById('search')
-const filterBtns = document.querySelectorAll('.filter button')
+const box = document.getElementById('box');
+const search = document.getElementById('search');
+const tabs = document.querySelectorAll('.tab');
 
-let currentFilter = 'all'
-let keyword = ''
+let currentType = 'all';
+let keyword = '';
 
-function render() {
-  grid.innerHTML = ''
+function render(){
+  box.innerHTML = '';
   skins.forEach(item => {
-    if (!item.name.includes(keyword)) return
-    if (currentFilter === 'bds' && !item.bds) return
-    if (currentFilter === 'bdi' && !item.bdi) return
+    if(!item.bds && !item.bdi) return;
+    const matchName = item.name.includes(keyword);
+    const showAll = currentType === 'all';
+    const showBds = currentType === 'bds' && item.bds;
+    const showBdi = currentType === 'bdi' && item.bdi;
+    if(!matchName || !(showAll || showBds || showBdi)) return;
 
-    const tags = []
-    if (item.bds) tags.push('android')
-    if (item.bdi) tags.push('ios')
-
-    const card = document.createElement('div')
-    card.className = 'card'
+    const card = document.createElement('div');
+    card.className = 'card';
     card.innerHTML = `
-      <div class="keybg"></div>
-      <div class="info">
+      <div class="cover"></div>
+      <div class="body">
         <div class="name">${item.name}</div>
         <div class="tags">
-          ${tags.map(t => `<span class="tag ${t}">${t === 'android' ? '安卓 bds' : '苹果 bdi'}</span>`).join('')}
+          ${item.bds ? '<span class="tag android">安卓 bds</span>' : ''}
+          ${item.bdi ? '<span class="tag ios">iOS bdi</span>' : ''}
         </div>
         <div class="btns">
-          ${item.bds ? `<a href="${ROOT}${item.bds}" class="btn" target="_blank" download="${item.bds}">bds 安卓</a>` : ''}
-          ${item.bdi ? `<a href="${ROOT}${item.bdi}" class="btn bdi" target="_blank" download="${item.bdi}">bdi 苹果</a>` : ''}
+          ${item.bds ? `<a href="${item.bds}" class="btn btn-bds" target="_blank">bds 下载</a>` : ''}
+          ${item.bdi ? `<a href="${item.bdi}" class="btn btn-bdi" target="_blank">bdi 下载</a>` : ''}
         </div>
       </div>
-    `
-    grid.appendChild(card)
-  })
+    `;
+    box.appendChild(card);
+  });
 }
 
-filterBtns.forEach(btn => {
-  btn.onclick = () => {
-    filterBtns.forEach(b => b.classList.remove('active'))
-    btn.classList.add('active')
-    currentFilter = btn.dataset.type
-    render()
-  }
-})
+search.addEventListener('input', ()=>{
+  keyword = search.value.trim();
+  render();
+});
 
-search.oninput = e => { keyword = e.target.value; render() }
-render()
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentType = tab.dataset.type;
+    render();
+  });
+});
+
+render();
 </script>
 </body>
 </html>
