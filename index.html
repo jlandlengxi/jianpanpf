@@ -18,6 +18,10 @@ body{background:#121214;color:#fff;font-family:system-ui,sans-serif;padding:15px
 .card{background:#1e1e1e;border-radius:12px;overflow:hidden}
 .info{padding:15px}
 .name{font-weight:600;margin-bottom:10px}
+.tags{display:flex;gap:6px;margin-bottom:10px}
+.tag{padding:4px 8px;border-radius:12px;font-size:12px}
+.tag.android{background:#2e7d32;color:#fff}
+.tag.ios{background:#ff9500;color:#fff}
 .btns{display:flex;gap:8px;margin-top:8px}
 .btn{flex:1;padding:10px 0;border:none;border-radius:8px;background:#4e79f7;color:#fff;text-align:center;text-decoration:none}
 .btn.bdi{background:#ff9500}
@@ -41,14 +45,20 @@ body{background:#121214;color:#fff;font-family:system-ui,sans-serif;padding:15px
 // ==============================================
 const USER = "jlandl"
 const REPO = "jianpanpf"
-const CDN = `https://cdn.jsdelivr.net/gh/${USER}/${REPO}/`
+const CDN = `https://raw.githubusercontent.com/${USER}/${REPO}/main/`
 
-// 下面只写文件名！自动变直链！
+// 下面是 10 个空白模板，你只需要填 name、bds、bdi
 const skins = [
-  { name: "Samsung扣字电脑音",   bds: "Samsung扣字电脑音.bds",   bdi: "Samsung扣字电脑音.bdi" },
-  { name: "粉色少女",   bds: "少女粉.bds", bdi: "" },
-  { name: "酷黑科技",   bds: "",          bdi: "科技黑.bdi" },
-  { name: "透明质感",   bds: "透明.bds",  bdi: "透明.bdi" },
+  { name: "Samsung扣字电脑音",   bds: "Samsung扣字电脑音.bds", bdi: "Samsung扣字电脑音.bdi" },
+  { name: "皮肤2",   bds: "", bdi: "" },
+  { name: "皮肤3",   bds: "", bdi: "" },
+  { name: "皮肤4",   bds: "", bdi: "" },
+  { name: "皮肤5",   bds: "", bdi: "" },
+  { name: "皮肤6",   bds: "", bdi: "" },
+  { name: "皮肤7",   bds: "", bdi: "" },
+  { name: "皮肤8",   bds: "", bdi: "" },
+  { name: "皮肤9",   bds: "", bdi: "" },
+  { name: "皮肤10",  bds: "", bdi: "" },
 ]
 
 const grid = document.getElementById('grid')
@@ -65,15 +75,23 @@ function render() {
     if (currentFilter === 'bds' && !item.bds) return
     if (currentFilter === 'bdi' && !item.bdi) return
 
+    // 自动识别标签
+    const tags = []
+    if (item.bds && item.bds.endsWith('.bds')) tags.push('android')
+    if (item.bdi && item.bdi.endsWith('.bdi')) tags.push('ios')
+
     const card = document.createElement('div')
     card.className = 'card'
     card.innerHTML = `
       <div class="keybg"></div>
       <div class="info">
         <div class="name">${item.name}</div>
+        <div class="tags">
+          ${tags.map(t => `<span class="tag ${t}">${t === 'android' ? '安卓 bds' : '苹果 bdi'}</span>`).join('')}
+        </div>
         <div class="btns">
-          ${item.bds ? `<a href="${CDN}${item.bds}" class="btn" target="_blank">bds 安卓</a>` : ''}
-          ${item.bdi ? `<a href="${CDN}${item.bdi}" class="btn bdi" target="_blank">bdi 苹果</a>` : ''}
+          ${item.bds ? `<a href="${CDN}${item.bds}" class="btn" target="_blank" download="${item.bds}">bds 安卓</a>` : ''}
+          ${item.bdi ? `<a href="${CDN}${item.bdi}" class="btn bdi" target="_blank" download="${item.bdi}">bdi 苹果</a>` : ''}
         </div>
       </div>
     `
