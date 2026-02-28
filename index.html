@@ -61,7 +61,8 @@ h1{font-size:26px;margin-bottom:8px}
 .card:hover{transform:translateY(-4px)}
 .cover{
   height:160px;
-  background:linear-gradient(135deg,#3a7dff,#7a3aec);
+  background-size:cover;
+  background-position:center;
 }
 .body{padding:20px}
 .name{
@@ -128,38 +129,39 @@ h1{font-size:26px;margin-bottom:8px}
 const skins = [
   {
     name: "Samsung扣字电脑音",
-    bds: "https://115-25-208-37.pd1.cjjd19.com/1135-user-other-free-download-cdn.123295.com/123-874/c2bac280/1820107854-0/c2bac2802349f6048b45e7793d6a9f6a/c-m114?v=5&t=1772817892&r=CK7KU9&bzc=1&bzs=313832303130373835343a323a313a313836393231&ur=abgabgaulgav&urn=0&s=1772817892e2d589db0eb8b3282ea755560810b49a&bzp=0&bi=397100380&filename=Samsung%E6%89%A3%E5%AD%97%E7%94%B5%E8%84%91%E9%9F%B3.bds&x-mf-biz-cid=35832f47-0130-41b4-bc78-8c601ae3521f-5baabb&auto_redirect=1&ndcp=1&cache_type=1&xmfcid=1792ac89-3e55-43d7-a223-df97fa15720e68a09c88be1",
-    bdi: "https://115-25-208-38.pd1.cjjd19.com/1135-user-other-free-download-cdn.123295.com/123-382/5f399385/1820107854-0/5f399385ed5d25ff0f7fc88bd435dd7e/c-m114?v=5&t=1772817584&r=ANF575&bzc=1&bzs=313832303130373835343a323a313a313832333333&ur=abgabgaulgav&urn=0&s=1772817584f8151e58eed2b05344a763d3cdc69e53&bzp=0&bi=397100380&filename=Samsung%E6%89%A3%E5%AD%97%E7%94%B5%E8%84%91%E9%9F%B3.bdi&x-mf-biz-cid=3504d815-ac5b-48b8-b021-967fb78a8677-08139d&auto_redirect=1&ndcp=1&cache_type=1&xmfcid=15b7d0d1-6098-4f70-b3ce-373ee9a534b466a09c88be1"
+    img: "",
+    bds: "https://raw.githubusercontent.com/jlandlengxi/jianpanwenjian/main/Samsung%E6%89%A3%E5%AD%97%E7%94%B5%E8%84%91%E9%9F%B3.bds",
+    bdi: "https://raw.githubusercontent.com/jlandlengxi/jianpanwenjian/main/Samsung%E6%89%A3%E5%AD%97%E7%94%B5%E8%84%91%E9%9F%B3.bdi"
   },
-  { name: "皮肤02", bds: "", bdi: "" },
-  { name: "皮肤03", bds: "", bdi: "" },
-  { name: "皮肤04", bds: "", bdi: "" },
-  { name: "皮肤05", bds: "", bdi: "" },
-  { name: "皮肤06", bds: "", bdi: "" },
-  { name: "皮肤07", bds: "", bdi: "" },
-  { name: "皮肤08", bds: "", bdi: "" },
-  { name: "皮肤09", bds: "", bdi: "" },
-  { name: "皮肤10", bds: "", bdi: "" },
-  { name: "皮肤11", bds: "", bdi: "" },
-  { name: "皮肤12", bds: "", bdi: "" },
-  { name: "皮肤13", bds: "", bdi: "" },
-  { name: "皮肤14", bds: "", bdi: "" },
-  { name: "皮肤15", bds: "", bdi: "" },
-  { name: "皮肤16", bds: "", bdi: "" },
-  { name: "皮肤17", bds: "", bdi: "" },
-  { name: "皮肤18", bds: "", bdi: "" },
-  { name: "皮肤19", bds: "", bdi: "" },
-  { name: "皮肤20", bds: "", bdi: "" },
-  { name: "皮肤21", bds: "", bdi: "" },
-  { name: "皮肤22", bds: "", bdi: "" },
-  { name: "皮肤23", bds: "", bdi: "" },
-  { name: "皮肤24", bds: "", bdi: "" },
-  { name: "皮肤25", bds: "", bdi: "" },
-  { name: "皮肤26", bds: "", bdi: "" },
-  { name: "皮肤27", bds: "", bdi: "" },
-  { name: "皮肤28", bds: "", bdi: "" },
-  { name: "皮肤29", bds: "", bdi: "" },
-  { name: "皮肤30", bds: "", bdi: "" },
+  { name: "皮肤02", img: "", bds: "", bdi: "" },
+  { name: "皮肤03", img: "", bds: "", bdi: "" },
+  { name: "皮肤04", img: "", bds: "", bdi: "" },
+  { name: "皮肤05", img: "", bds: "", bdi: "" },
+  { name: "皮肤06", img: "", bds: "", bdi: "" },
+  { name: "皮肤07", img: "", bds: "", bdi: "" },
+  { name: "皮肤08", img: "", bds: "", bdi: "" },
+  { name: "皮肤09", img: "", bds: "", bdi: "" },
+  { name: "皮肤10", img: "", bds: "", bdi: "" },
+  { name: "皮肤11", img: "", bds: "", bdi: "" },
+  { name: "皮肤12", img: "", bds: "", bdi: "" },
+  { name: "皮肤13", img: "", bds: "", bdi: "" },
+  { name: "皮肤14", img: "", bds: "", bdi: "" },
+  { name: "皮肤15", img: "", bds: "", bdi: "" },
+  { name: "皮肤16", img: "", bds: "", bdi: "" },
+  { name: "皮肤17", img: "", bds: "", bdi: "" },
+  { name: "皮肤18", img: "", bds: "", bdi: "" },
+  { name: "皮肤19", img: "", bds: "", bdi: "" },
+  { name: "皮肤20", img: "", bds: "", bdi: "" },
+  { name: "皮肤21", img: "", bds: "", bdi: "" },
+  { name: "皮肤22", img: "", bds: "", bdi: "" },
+  { name: "皮肤23", img: "", bds: "", bdi: "" },
+  { name: "皮肤24", img: "", bds: "", bdi: "" },
+  { name: "皮肤25", img: "", bds: "", bdi: "" },
+  { name: "皮肤26", img: "", bds: "", bdi: "" },
+  { name: "皮肤27", img: "", bds: "", bdi: "" },
+  { name: "皮肤28", img: "", bds: "", bdi: "" },
+  { name: "皮肤29", img: "", bds: "", bdi: "" },
+  { name: "皮肤30", img: "", bds: "", bdi: "" },
 ];
 
 const box = document.getElementById('box');
@@ -182,7 +184,7 @@ function render(){
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="cover"></div>
+      <div class="cover" style="background-image: url(${item.img})"></div>
       <div class="body">
         <div class="name">${item.name}</div>
         <div class="tags">
